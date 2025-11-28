@@ -23,11 +23,12 @@
 - [Tentang Pesantren](#-tentang-pesantren-ulul-albaab-sukabumi)
 - [Fitur Website](#-fitur-website)
 - [Tech Stack](#-tech-stack)
-- [Installation](#-installation)
 - [Project Structure](#-project-structure)
+- [Installation](#-installation)
+- [Development Progress](#-development-progress)
 - [Build & Deployment](#-build--deployment)
-- [Screenshots](#-screenshots)
 - [Roadmap](#-roadmap)
+- [Screenshots](#-screenshots)
 - [FAQ](#-faq)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -37,7 +38,7 @@
 
 ## 🎯 Tentang Project
 
-Website ini dibangun untuk mempermudah calon santri dan wali santri dalam:
+Website ini dibangun sebagai **portfolio project** untuk melamar posisi **Staff IT** di Pesantren Ulul Albaab Sukabumi, sekaligus sebagai solusi digitalisasi untuk mempermudah:
 
 - 📖 **Mengenal profil** dan program Pesantren Ulul Albaab Sukabumi
 - 📝 **Pendaftaran online** PPDB 2026/2027 yang mudah dan cepat
@@ -54,6 +55,9 @@ Website ini dibangun untuk mempermudah calon santri dan wali santri dalam:
 ✅ SEO Friendly
 ✅ Accessibility (A11y) Compliant
 ✅ Form Pendaftaran Terintegrasi
+🚧 Database Integration (In Progress)
+🚧 Payment Gateway (Planned)
+🚧 Admin Dashboard (Planned)
 ```
 
 ---
@@ -110,17 +114,20 @@ Website ini dibangun untuk mempermudah calon santri dan wali santri dalam:
 | **Iuran Taawun/Tahun** | Rp 13.200.000 (all in) |
 | **Cicilan/Bulan** | Rp 1.100.000 |
 | **Kontak CS Pusat** | 0812-85-300800 |
+| **Recruitment** | 0878-3627-0966 |
 
 ---
 
 ## ✨ Fitur Website
 
-### 🌐 Halaman Utama
+### 🌐 Halaman Utama (Home)
 - Hero section dengan CTA pendaftaran
-- Statistik pesantren
+- Statistik pesantren real-time
 - Keunggulan & program unggulan
 - Testimoni santri & wali santri
 - Call-to-action section
+- Back to top button
+- WhatsApp floating button
 
 ### 📖 Halaman Profil
 - Visi & misi pesantren
@@ -138,18 +145,21 @@ Website ini dibangun untuk mempermudah calon santri dan wali santri dalam:
 - Jadwal kegiatan harian
 
 ### 📝 Halaman Pendaftaran
-- Form pendaftaran online
-- Syarat & ketentuan
-- Alur pendaftaran
+- Form pendaftaran online multi-step
+- Validasi data real-time
 - Informasi biaya lengkap
+- Persyaratan berkas
 - FAQ pendaftaran
+- Status pendaftaran
+- Upload berkas (coming soon)
 
 ### 📞 Halaman Kontak
-- Form kontak
-- Informasi lengkap
+- Form kontak interaktif
+- Informasi lengkap kontak
 - Peta lokasi interaktif
 - Social media links
 - Jam operasional
+- Info fasilitas kesehatan terdekat
 
 ---
 
@@ -177,6 +187,8 @@ Website ini dibangun untuk mempermudah calon santri dan wali santri dalam:
 | `react-router-dom` | ^6.x | Client-side Routing |
 | `lucide-react` | ^0.x | Icon Library |
 | `tailwindcss` | ^3.4.1 | CSS Framework |
+| `postcss` | ^8.x | CSS Processing |
+| `autoprefixer` | ^10.x | CSS Vendor Prefixing |
 
 ### Design System
 
@@ -187,6 +199,77 @@ Website ini dibangun untuk mempermudah calon santri dan wali santri dalam:
 | **Secondary** | `#00cc7a` | Success states, eco elements |
 | **Font Heading** | Plus Jakarta Sans | Titles, headings |
 | **Font Body** | Inter | Body text, paragraphs |
+
+---
+
+## 🏗️ Project Structure
+
+```
+pesantren-ulul-albaab/
+├── 📁 node_modules/              # Dependencies
+├── 📁 public/                    # Static assets
+│   ├── robots.txt                # SEO robots file
+│   └── sitemap.xml               # SEO sitemap
+│
+├── 📁 src/
+│   ├── 📁 assets/                # Images, illustrations, etc
+│   │
+│   ├── 📁 components/            # React components
+│   │   ├── 📁 common/            # Shared components
+│   │   │   ├── BackToTop.jsx    # Scroll to top button
+│   │   │   ├── CTASection.jsx   # Call-to-action section
+│   │   │   ├── LoadingScreen.jsx # Loading state
+│   │   │   ├── ScrollToTop.jsx  # Auto scroll on route change
+│   │   │   └── WhatsAppButton.jsx # Floating WA button
+│   │   │
+│   │   ├── 📁 forms/             # Form-related components
+│   │   │
+│   │   ├── 📁 layout/            # Layout components
+│   │   │   ├── Footer.jsx        # Footer section
+│   │   │   ├── Layout.jsx        # Main layout wrapper
+│   │   │   └── Navbar.jsx        # Navigation bar
+│   │   │
+│   │   └── 📁 ui/                # Reusable UI components
+│   │       ├── Badge.jsx         # Badge component
+│   │       ├── Button.jsx        # Button component
+│   │       ├── Card.jsx          # Card component
+│   │       └── Input.jsx         # Input component
+│   │
+│   ├── 📁 hooks/                 # Custom React hooks
+│   │
+│   ├── 📁 lib/                   # Utilities & configs
+│   │   └── router.jsx            # Router configuration
+│   │
+│   ├── 📁 pages/                 # Page components
+│   │   ├── Home.jsx              # Homepage
+│   │   ├── Kontak.jsx            # Contact page
+│   │   ├── NotFound.jsx          # 404 page
+│   │   ├── Pendaftaran.jsx       # Registration page
+│   │   ├── Profil.jsx            # Profile/About page
+│   │   └── Program.jsx           # Programs page
+│   │
+│   ├── 📁 services/              # API services & integrations
+│   │
+│   ├── 📁 store/                 # State management
+│   │
+│   ├── 📁 styles/                # Global styles
+│   │   └── index.css             # Main CSS file
+│   │
+│   ├── 📁 utils/                 # Helper functions
+│   │
+│   └── main.jsx                  # Entry point
+│
+├── .env.example                  # Environment variables example
+├── .gitignore                    # Git ignore rules
+├── eslint.config.js              # ESLint configuration
+├── index.html                    # HTML entry point
+├── package.json                  # Dependencies & scripts
+├── package-lock.json             # Lock file
+├── postcss.config.js             # PostCSS configuration
+├── tailwind.config.js            # Tailwind configuration
+├── vite.config.js                # Vite configuration
+└── README.md                     # Documentation (this file)
+```
 
 ---
 
@@ -227,14 +310,24 @@ cp .env.example .env.local
 Edit `.env.local` jika diperlukan:
 
 ```env
-# API Endpoints (jika ada)
+# API Endpoints (untuk integrasi backend nanti)
 VITE_API_URL=http://localhost:3000/api
 
-# Google Maps API (untuk peta)
-VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
+# Supabase (jika menggunakan Supabase)
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-# Contact Form (jika pakai service eksternal)
-VITE_CONTACT_FORM_URL=your_form_endpoint
+# Payment Gateway (Midtrans)
+VITE_MIDTRANS_CLIENT_KEY=your_midtrans_client_key
+
+# Google Maps API (untuk peta)
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+
+# Email Service (untuk notifikasi)
+VITE_EMAIL_SERVICE_URL=your_email_service_url
+
+# WhatsApp Business API
+VITE_WHATSAPP_NUMBER=6281285300800
 ```
 
 #### 4️⃣ Run Development Server
@@ -288,63 +381,76 @@ content: [
 
 ---
 
-## 🏗️ Project Structure
+## 📊 Development Progress
 
-```
-pesantren-ulul-albaab-sukabumi/
-├── 📁 public/                    # Static assets
-│   ├── logo.svg                  # Logo pesantren
-│   └── favicon.ico               # Favicon
-│
-├── 📁 src/
-│   ├── 📁 assets/                # Images, illustrations
-│   │   ├── images/               # Photo & images
-│   │   └── illustrations/        # SVG illustrations
-│   │
-│   ├── 📁 components/            # React components
-│   │   ├── 📁 ui/                # UI components
-│   │   │   ├── Button.jsx        # Button component
-│   │   │   ├── Input.jsx         # Input component
-│   │   │   ├── Card.jsx          # Card component
-│   │   │   └── Badge.jsx         # Badge component
-│   │   │
-│   │   ├── 📁 layout/            # Layout components
-│   │   │   ├── Navbar.jsx        # Navigation bar
-│   │   │   ├── Footer.jsx        # Footer section
-│   │   │   └── Layout.jsx        # Main layout wrapper
-│   │   │
-│   │   └── 📁 common/            # Common components
-│   │       ├── Hero.jsx          # Hero section
-│   │       └── ContactForm.jsx   # Contact form
-│   │
-│   ├── 📁 pages/                 # Page components
-│   │   ├── Home.jsx              # Homepage
-│   │   ├── Profil.jsx            # About page
-│   │   ├── Program.jsx           # Programs page
-│   │   ├── Pendaftaran.jsx       # Registration page
-│   │   ├── Kontak.jsx            # Contact page
-│   │   └── NotFound.jsx          # 404 page
-│   │
-│   ├── 📁 lib/                   # Utilities & configs
-│   │   └── router.jsx            # Router configuration
-│   │
-│   ├── 📁 styles/                # Global styles
-│   │   └── globals.css           # Global CSS
-│   │
-│   ├── App.jsx                   # Root component
-│   ├── main.jsx                  # Entry point
-│   └── index.css                 # Tailwind directives
-│
-├── .env.example                  # Environment variables example
-├── .gitignore                    # Git ignore rules
-├── eslint.config.js              # ESLint configuration
-├── index.html                    # HTML entry point
-├── package.json                  # Dependencies & scripts
-├── postcss.config.js             # PostCSS configuration
-├── tailwind.config.js            # Tailwind configuration
-├── vite.config.js                # Vite configuration
-└── README.md                     # Documentation
-```
+### Phase 1 - Frontend Development (✅ 100% Complete)
+
+- [x] Project setup & configuration
+- [x] UI Components library
+- [x] Routing system
+- [x] Homepage design & implementation
+- [x] Profile page
+- [x] Programs page
+- [x] Registration page with form
+- [x] Contact page
+- [x] 404 page
+- [x] Responsive design (mobile, tablet, desktop)
+- [x] Loading states
+- [x] Scroll to top functionality
+- [x] WhatsApp floating button
+
+### Phase 2 - Backend Integration (🚧 In Progress - 0%)
+
+- [ ] Setup Supabase database
+- [ ] Create database schema
+- [ ] API endpoints setup
+- [ ] Form submission handling
+- [ ] Data validation & sanitization
+- [ ] File upload system
+- [ ] Email notification service
+- [ ] WhatsApp notification integration
+
+### Phase 3 - Payment Integration (📋 Planned - 0%)
+
+- [ ] Midtrans/Xendit integration
+- [ ] Payment gateway setup
+- [ ] Payment confirmation flow
+- [ ] Payment status tracking
+- [ ] Receipt generation
+- [ ] Refund handling (if needed)
+
+### Phase 4 - Admin Dashboard (📋 Planned - 0%)
+
+- [ ] Admin authentication
+- [ ] Dashboard overview
+- [ ] Manage registrations
+- [ ] Payment management
+- [ ] Reports & analytics
+- [ ] User management
+- [ ] Settings & configuration
+
+### Phase 5 - Advanced Features (📋 Planned - 0%)
+
+- [ ] AI Chatbot integration
+- [ ] Auto-response FAQ system
+- [ ] Student portal
+- [ ] Online payment tracking
+- [ ] Notification system (Email & WA)
+- [ ] PDF generation for receipts
+- [ ] Export data functionality
+
+### Phase 6 - Deployment & Optimization (📋 Planned - 0%)
+
+- [ ] SEO optimization
+- [ ] Performance optimization
+- [ ] Image optimization
+- [ ] Code splitting
+- [ ] Deploy to Vercel
+- [ ] Custom domain setup
+- [ ] SSL certificate
+- [ ] Analytics integration
+- [ ] Error tracking (Sentry)
+- [ ] Monitoring setup
 
 ---
 
@@ -392,31 +498,43 @@ npm run build
 
 2. Drag & drop folder `dist/` ke [Netlify Drop](https://app.netlify.com/drop)
 
-### 📤 Deploy to GitHub Pages
+---
 
-1. Install gh-pages
-```bash
-npm install --save-dev gh-pages
-```
+## 🗺️ Roadmap
 
-2. Update `vite.config.js`
-```javascript
-export default defineConfig({
-  base: '/pesantren-ulul-albaab-sukabumi/',
-})
-```
+### ✅ Phase 1 - MVP (Current - 100%)
+- [x] Homepage dengan hero section
+- [x] Halaman profil pesantren
+- [x] Halaman program pendidikan
+- [x] Form pendaftaran online
+- [x] Halaman kontak
+- [x] Responsive design
+- [x] Basic SEO optimization
 
-3. Add deploy script to `package.json`
-```json
-"scripts": {
-  "deploy": "npm run build && gh-pages -d dist"
-}
-```
+### 🚧 Phase 2 - Backend & Database (Q1 2026 - 0%)
+- [ ] Supabase integration
+- [ ] Form data persistence
+- [ ] File upload system
+- [ ] Email notification
+- [ ] WhatsApp notification
 
-4. Deploy
-```bash
-npm run deploy
-```
+### 📋 Phase 3 - Payment Gateway (Q1 2026 - 0%)
+- [ ] Midtrans integration
+- [ ] Payment flow
+- [ ] Receipt generation
+- [ ] Payment tracking
+
+### 📋 Phase 4 - Admin Dashboard (Q2 2026 - 0%)
+- [ ] Admin authentication
+- [ ] Registration management
+- [ ] Payment management
+- [ ] Analytics dashboard
+
+### 📋 Phase 5 - Advanced Features (Q2 2026 - 0%)
+- [ ] AI Chatbot
+- [ ] Student portal
+- [ ] Mobile app (React Native)
+- [ ] Progressive Web App (PWA)
 
 ---
 
@@ -425,40 +543,22 @@ npm run deploy
 ### 🏠 Homepage
 ![Homepage](https://via.placeholder.com/800x450/0066ff/ffffff?text=Homepage+Screenshot)
 
+*Hero section dengan CTA pendaftaran dan statistik pesantren*
+
 ### 📖 Profil Page
 ![Profil](https://via.placeholder.com/800x450/00cc7a/ffffff?text=Profil+Page+Screenshot)
+
+*Informasi lengkap tentang visi, misi, dan fasilitas pesantren*
 
 ### 📝 Pendaftaran Page
 ![Pendaftaran](https://via.placeholder.com/800x450/ffd700/333333?text=Pendaftaran+Page+Screenshot)
 
----
+*Form pendaftaran online dengan validasi real-time*
 
-## 🗺️ Roadmap
+### 📱 Mobile Responsive
+![Mobile](https://via.placeholder.com/400x700/0066ff/ffffff?text=Mobile+Responsive)
 
-### Phase 1 - MVP (Current) ✅
-- [x] Homepage dengan hero section
-- [x] Halaman profil pesantren
-- [x] Halaman program pendidikan
-- [x] Form pendaftaran online
-- [x] Halaman kontak
-- [x] Responsive design
-- [x] SEO optimization
-
-### Phase 2 - Enhancement (Q1 2025) 🚧
-- [ ] Admin dashboard untuk kelola pendaftaran
-- [ ] Email notification system
-- [ ] Payment gateway integration
-- [ ] WhatsApp integration
-- [ ] Multi-language support (ID/EN/AR)
-- [ ] Dark mode
-
-### Phase 3 - Advanced Features (Q2 2025) 📋
-- [ ] Student portal
-- [ ] Online learning platform
-- [ ] Live chat support
-- [ ] Mobile app (React Native)
-- [ ] Progressive Web App (PWA)
-- [ ] Analytics dashboard
+*Tampilan mobile-friendly untuk semua halaman*
 
 ---
 
@@ -479,7 +579,8 @@ Edit file <code>tailwind.config.js</code> pada bagian <code>colors</code>:
 colors: {
   primary: {
     50: '#e6f0ff',
-    // ... customize colors
+    500: '#0066ff', // Main color
+    // ... customize other shades
   }
 }
 ```
@@ -497,7 +598,7 @@ Tentu! Anda dapat menggunakan template ini dan menyesuaikan dengan kebutuhan pes
 
 1. Buat file di folder <code>src/pages/</code>
 2. Tambahkan route di <code>src/lib/router.jsx</code>
-3. Update navigation di <code>Navbar.jsx</code>
+3. Update navigation di <code>src/components/layout/Navbar.jsx</code>
 </details>
 
 <details>
@@ -509,6 +610,12 @@ Website ini support:
 - ✅ Firefox (latest)
 - ✅ Safari (latest)
 - ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+</details>
+
+<details>
+<summary><strong>Bagaimana cara mengintegrasikan database?</strong></summary>
+<br>
+Project ini didesain untuk mudah diintegrasikan dengan Supabase. Petunjuk lengkap akan ditambahkan di dokumentasi terpisah.
 </details>
 
 ---
@@ -556,8 +663,8 @@ Contributions are always welcome! Please follow these steps:
 | 🌐 **Website** | [alandalus-ululalbaab.com](https://www.alandalus-ululalbaab.com) |
 | 📱 **Instagram** | [@alandalusululalbaab](https://www.instagram.com/alandalusululalbaab) |
 | 📺 **YouTube** | [@UlulAlbaabSukabumi](https://www.youtube.com/@UlulAlbaabSukabumi) |
-| 📞 **CS Pusat** | 0812-85-300800 |
-| 💼 **Recruitment** | 0878-3627-0966 |
+| 📞 **CS Pusat** | [0812-85-300800](tel:081285300800) |
+| 💼 **Recruitment** | [0878-3627-0966](tel:087836270966) |
 | 📧 **Email** | info@alandalus-ululalbaab.com |
 
 ### 🏥 Fasilitas Kesehatan Terdekat
@@ -578,7 +685,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2025 Pesantren Ulul Albaab Sukabumi
+Copyright (c) 2025 Rieza Eka Tomara
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -600,16 +707,19 @@ in the Software without restriction...
 📧 **Email**: riezaekatomara@gmail.com  
 📱 **WhatsApp**: [0858-8887-1997](https://wa.me/6285888871997)
 
+**Portfolio Project untuk Staff IT Position**  
+Pesantren Ulul Albaab Sukabumi
+
 </div>
 
 ---
 
 ## 💬 Support
 
-Jika Anda memiliki pertanyaan atau butuh bantuan, silakan:
+Jika Anda memiliki pertanyaan atau butuh bantuan:
 
 - 📧 Email: riezaekatomara@gmail.com
-- 💬 WhatsApp: 0858-8887-1997
+- 💬 WhatsApp: [0858-8887-1997](https://wa.me/6285888871997)
 - 🐛 [Open an Issue](https://github.com/riezaekatomara/pesantren-ulul-albaab-sukabumi/issues)
 - 💡 [Request a Feature](https://github.com/riezaekatomara/pesantren-ulul-albaab-sukabumi/issues/new)
 
@@ -621,7 +731,11 @@ Jika Anda memiliki pertanyaan atau butuh bantuan, silakan:
 
 Jika project ini membantu Anda, berikan ⭐ di repository ini!
 
-**Made with ❤️ by Rieza Eka Tomara**
+---
+
+**Portfolio Project by Rieza Eka Tomara**
+
+*Dibuat dengan ❤️ untuk Pesantren Ulul Albaab Sukabumi*
 
 © 2025 Pesantren Ulul Albaab Sukabumi - Managed By Al-Andalus
 
